@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title>Lineup App</title>
+<style>
+/* yay css! */
+html{
+	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
+}
+
+.dev{
+	border: 1px dashed #a0a0a0;
+}
+
+.nav-bar ul{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	margin: 10px 3px 10px 3px;
+	padding: 0;
+}
+
+.nav-bar ul li, .sidebar ul li{
+	flex: 1;
+	text-align: center;
+	border: 1px solid #f8a0ff;
+}
+
+.lineup-card{
+	width: 61%;
+}
+
+.lineup-card ol{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0;
+}
+
+.lineup-card ol li{
+	flex: 1 48px;
+	border: 1px solid #f8a0ff;
+}
+
+.sidebar{
+	width: 39%;
+}
+
+.sidebar ul{
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0;
+}
+
+.footer{
+	text-align: center;
+}
+
+</style>
+	</head>
+	<body>
+		<div class='nav-bar dev'>
+			<ul class='dev'>
+				<li>&lt;</li>
+				<li>scorecards</li>
+				<li>logo</li>
+				<li>new card</li>
+				<li>&gt;</li>
+			</ul>
+		</div>		
+		<div class='content dev'>
+			<canvas id='position-chart' class='dev' width='250px' height='250px'></canvas>
+			<table id='scorebox' class='dev'>
+				<tbody>
+					<tr>
+						<th>BOS</th>
+						<td>0</th>
+					</tr>
+					<tr>
+						<th>NYY</th>
+						<td>8</td>
+					</tr>
+				</tbody>
+			</table>
+			</table>
+			<div class='lineup-card dev'>
+				<ol class='dev'>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#11 Brett Gardner(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+					<li>
+						<span class='name'>#99 Aaron Judge(RF)</sapn><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+				</ol>
+			</div>
+			<div class='sidebar dev'>
+				<ul class='dev'>
+					<li>next</li>
+					<li>save</li>
+					<li>reset</li>
+					<li>bullpen</li>
+				</ul>
+			</div>
+		</div>
+		<div class='footer dev'>
+			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
+		</div>
+<script>
+/* yay javascript! */
+
+
+
+</script>
+	</body>
+</html>
+
+
