@@ -54,7 +54,7 @@ function draw_homeplate(x, y){
 function draw_infield(){
 	ctx.fillStyle = sandlot;
 	ctx.beginPath();
-	ctx.arc(w/2, dim-19, inf_sf*base_dist, -Math.PI/4, -3*Math.PI/4, true);
+	ctx.arc(w/2, dim-inf_sf/2*base_dist-7, inf_sf*base_dist*0.76, -Math.PI/8, -7*Math.PI/8, true);
 	ctx.fill();
 	ctx.beginPath();
 	ctx.moveTo(points[0][0], points[0][1]);
