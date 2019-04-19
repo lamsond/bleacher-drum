@@ -11,6 +11,10 @@ html{
 	padding: 0;
 }
 
+*{
+	box-sizing: border-box;
+}
+
 .dev{
 	border: 1px dashed #a0a0a0;
 }
@@ -19,7 +23,7 @@ html{
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
-	margin: 10px 3px 10px 3px;
+	margin: 0;
 	padding: 0;
 }
 
@@ -30,7 +34,6 @@ html{
 }
 
 .lineup-card{
-	max-width: 62%;
 }
 
 .lineup-card ol{
@@ -51,7 +54,7 @@ html{
 }
 
 .sidebar{
-	width: 39%;
+	
 }
 
 .sidebar ul{
@@ -77,14 +80,19 @@ html{
 	grid-row:1/ 4;
 }
 
-.gameday{
-	grid-column: 3 / 4;
+.game-details{
+	grid-column: 3 / 6;
 	grid-row: 2 / 3;
+	display: flex;
+	align-items: center;
 }
 
-#scorebox{
-	grid-column: 4 / 6;
-	grid-row: 2 / 3;
+.gameday{
+	height: 24px;
+}
+
+.scorebox{
+	
 }
 
 .lineup-card{
@@ -111,20 +119,21 @@ html{
 		</div>		
 		<div class='content dev'>
 			<canvas id='position-chart' class='dev' width='250px' height='250px'></canvas>
-			<h3 class='gameday dev'>4/18/19</h3>
-			<table id='scorebox' class='dev'>
-				<tbody>
-					<tr>
-						<th>BOS</th>
-						<td>0</th>
-					</tr>
-					<tr>
-						<th>NYY</th>
-						<td>8</td>
-					</tr>
-				</tbody>
-			</table>
-			</table>
+			<div class='game-details dev'>
+				<h3 class='gameday dev'>4/18/19</h3>
+				<table class='scorebox dev'>
+					<tbody>
+						<tr>
+							<th>BOS</th>
+							<td>0</th>
+						</tr>
+						<tr>
+							<th>NYY</th>
+							<td>8</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<div class='lineup-card dev'>
 				<ol class='dev'>
 						<li>
