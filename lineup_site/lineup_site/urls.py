@@ -25,6 +25,8 @@ router.register(r'games', views.GameViewSet)
 router.register(r'players', views.PlayerViewSet)
 
 urlpatterns = [
+    path('new_game/', views.new_game),
+    path('set_lineup/<int:game_id>/', views.set_lineup),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

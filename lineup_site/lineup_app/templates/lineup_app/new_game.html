@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title>Lineup App</title>
+<style>
+/* yay css! */
+body{
+	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+.dev{
+	border: 1px dashed #a0a0a0;
+}
+
+.nav-bar ul{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-bar ul li, .sidebar ul li{
+	flex: 1 50px;
+	text-align: center;
+	border: 1px solid #f8a0ff;
+}
+
+.sidebar ul li{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.lineup-card{
+	z-index: 1;
+	background: #ffffff;
+}
+
+.lineup-card ol{
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	padding: 0;
+}
+
+.lineup-card ol li{
+	flex: 1 50px;
+	border: 1px solid #f8a0ff;
+	display: flex;
+	align-items: center;
+}
+
+.lineup-card ol li span{
+	padding: 0 10px 0 10px;
+}
+
+.sidebar{
+	
+}
+
+.sidebar ul{
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0;
+}
+
+
+.footer{
+	text-align: center;
+}
+
+.content{
+	display: grid;
+	/*grid-template-columns: 3fr 1fr 3fr 1fr 2fr;*/
+	grid-template-columns: 6fr 1fr 8fr;
+	grid-template-rows: 1fr 1fr 1fr 6fr;
+}
+
+#position-chart{
+	grid-column: 1 / 3;
+	grid-row:1 / 4;
+}
+
+.game-details{
+	grid-column: 3 / 4;
+	grid-row: 1 / 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.gameday{
+	height: 24px;
+	padding: 0 10px 0 10px;
+}
+
+.scorebox{
+	
+}
+
+.lineup-card{
+	grid-column: 2 / 4;
+	grid-row: 3 / 5;
+}
+
+.sidebar{
+	grid-column: 1 / 2;
+	grid-row: 4 / 5;
+}
+
+.scorebox td, .scorebox th{
+	min-width: 23px;
+}
+
+</style>
+	</head>
+	<body>
+		<div class='nav-bar dev'>
+			<ul class='dev'>
+				<li>&lt;</li>
+				<li>scorecards</li>
+				<li>logo</li>
+				<li>new card</li>
+				<li>&gt;</li>
+			</ul>
+		</div>		
+		<div class='content dev'>
+			<canvas id='position-chart' class='dev' width='300px' height='250px'></canvas>
+			<div class='game-details dev'>
+				<h3 class='gameday dev'>4/18/19</h3>
+				<table class='scorebox dev'>
+					<tbody>
+						<tr>
+							<th>BOS</th>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<th>0</th>
+						</tr>
+						<tr>
+							<th>NYY</th>
+							<td>0</td>
+							<td>2</td>
+							<td>1</td>
+							<td>0</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>4</td>
+							<td>-</td>
+							<th>8</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class='lineup-card dev'>
+				<ol class='dev'>
+						<li>
+						<span class='name'>#11 Brett Gardner(CF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#99 Aaron Judge(RF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#45 Luke Voit(1B)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#25 Gleyber Torres(SS)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#26 DJ LeMahieu(3B)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#77 Clint Frazier(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#36 Mike Ford(DH)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#28 Austin Romine(C)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+					<li>
+						<span class='name'>#14 Tyler Wade(2B)</sapn><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+				</ol>
+			</div>
+			<div class='sidebar dev'>
+				<ul class='score-controls dev'>
+					<li>next</li>
+					<li>save</li>
+					<li>reset</li>
+					<li>bullpen</li>
+				</ul>
+			</div>
+		</div>
+		<div class='footer dev'>
+			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
+		</div>
+<script src='score-box.js'></script>
+	</body>
+</html>
+
+
