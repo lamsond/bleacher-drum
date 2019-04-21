@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Game, LineupSlot, Player, Team
 from rest_framework import viewsets
@@ -32,4 +32,8 @@ def new_game(request):
 def set_lineup(request, game_id):
     return HttpResponse("<h1>Coming soon...</h1>")
 
-
+def new_team(request):
+    if request.method == 'POST':
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            return render('lineup_app/new_team.html')
