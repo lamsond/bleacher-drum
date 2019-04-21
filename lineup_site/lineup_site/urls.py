@@ -25,7 +25,9 @@ router.register(r'games', views.GameViewSet)
 router.register(r'players', views.PlayerViewSet)
 
 urlpatterns = [
+    path('play_ball/', views.play_ball),
     path('new_game/', views.new_game),
+    path('new_team/', views.new_team),
     path('set_lineup/<int:game_id>/', views.set_lineup),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),

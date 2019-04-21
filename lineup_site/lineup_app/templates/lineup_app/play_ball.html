@@ -45,21 +45,21 @@ body{
 	background: #ffffff;
 }
 
-.lineup-card ul{
+.lineup-card ol{
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	padding: 0;
 }
 
-.lineup-card ul li{
+.lineup-card ol li{
 	flex: 1 50px;
 	border: 1px solid #f8a0ff;
 	display: flex;
 	align-items: center;
 }
 
-.lineup-card ul li span{
+.lineup-card ol li span{
 	padding: 0 10px 0 10px;
 }
 
@@ -170,14 +170,37 @@ body{
 					</tbody>
 				</table>
 			</div>
-			<h3>new game</h3>
-			<form class='lineup-card dev' method='post'>
-				{% csrf_token %}
-				<ul class='dev'>
-					{{ form.as_ul }}
-				</ul>
-				<input type='submit' value='save'>
-			</form>
+			<div class='lineup-card dev'>
+				<ol class='dev'>
+						<li>
+						<span class='name'>#11 Brett Gardner(CF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#99 Aaron Judge(RF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#45 Luke Voit(1B)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#25 Gleyber Torres(SS)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#26 DJ LeMahieu(3B)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#77 Clint Frazier(LF)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#36 Mike Ford(DH)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+						<li>
+						<span class='name'>#28 Austin Romine(C)</span><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+					<li>
+						<span class='name'>#14 Tyler Wade(2B)</sapn><button class='ab-btn'>at bat</button><button class='edit-btn'>edit</button><button class='sub-btn'>sub</button>
+					</li>
+				</ol>
+			</div>
 			<div class='sidebar dev'>
 				<ul class='score-controls dev'>
 					<li>next</li>
