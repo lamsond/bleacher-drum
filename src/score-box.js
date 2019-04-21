@@ -68,6 +68,7 @@ draw_infield();
 draw_diamond(w/2, dim-20, base_dist, sandlot);
 draw_diamond(w/2, dim-30, base_dist-15, light_grass);
 draw_circle(w/2, dim-25, 18, sandlot);
+draw_circle(w/2, dim-20-0.5*base_dist*Math.sqrt(2), 10, sandlot);
 draw_homeplate(w/2, dim-18);
 
 
