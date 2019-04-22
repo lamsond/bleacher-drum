@@ -170,8 +170,8 @@ body{
 					</tbody>
 				</table>
 			</div>
-			<h3>new game</h3>
 			<form class='lineup-card dev' method='post'>
+				<h3>new game</h3>
 				{% csrf_token %}
 				<ul class='dev'>
 					{{ form.as_ul }}

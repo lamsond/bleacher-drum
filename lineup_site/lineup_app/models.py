@@ -1,3 +1,4 @@
+import django.utils.timezone
 from django.db import models
 
 POSITIONS = (
@@ -27,7 +28,7 @@ class Game(models.Model):
 
     runs_home = models.IntegerField()
     runs_away = models.IntegerField()
-    date = models.DateField()
+    date = models.DateField(default=django.utils.timezone.now, blank=True)
 
     def __str__(self):
         return str(self.team_away) + ': ' + str(self.runs_away) + ', ' + str(self.team_home) + ': ' + str(self.runs_home) + ' (' + str(self.date) + ')'
