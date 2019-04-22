@@ -28,7 +28,7 @@ class Game(models.Model):
 
     runs_home = models.IntegerField()
     runs_away = models.IntegerField()
-    date = models.DateField(default=django.utils.timezone.now, blank=True)
+    date = models.DateField(default=django.utils.timezone.now)
 
     def __str__(self):
         return str(self.team_away) + ': ' + str(self.runs_away) + ', ' + str(self.team_home) + ': ' + str(self.runs_home) + ' (' + str(self.date) + ')'

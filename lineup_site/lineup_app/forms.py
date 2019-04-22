@@ -13,7 +13,7 @@ class GameForm(ModelForm):
         model = Game
         fields = ['date', 'team_away', 'team_home', 'runs_away', 'runs_home']
         widgets = {
-                'date': SelectDateWidget()
+                'date': SelectDateWidget
                 }
 
 
