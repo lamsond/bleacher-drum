@@ -138,34 +138,34 @@ body{
 		<div class='content dev'>
 			<canvas id='position-chart' class='dev' width='300px' height='250px'></canvas>
 			<div class='game-details dev'>
-				<h3 class='gameday dev'>4/18/19</h3>
+				<h3 class='gameday dev'>--/--/--</h3>
 				<table class='scorebox dev'>
 					<tbody>
 						<tr>
-							<th>BOS</th>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<th>0</th>
+							<th id='away-team-sb'>&nbsp;&nbsp;&nbsp;</th>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<th>&nbsp;</th>
 						</tr>
 						<tr>
-							<th>NYY</th>
-							<td>0</td>
-							<td>2</td>
-							<td>1</td>
-							<td>0</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>4</td>
-							<td>-</td>
-							<th>8</th>
+							<th id='home-team-sb'>&nbsp;&nbsp;&nbsp;</th>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<th>&nbsp;</th>
 						</tr>
 					</tbody>
 				</table>
@@ -191,6 +191,7 @@ body{
 			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
 		</div>
 <script src="{% static 'lineup_app/score-box.js' %}"></script>
+<script src="{% static 'lineup_app/realtime-scoreboard.js' %}"></script>
 	</body>
 </html>
 
