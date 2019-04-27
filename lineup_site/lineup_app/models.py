@@ -12,6 +12,7 @@ POSITIONS = (
         ('CF', 'CF'),
         ('RF', 'RF'),
         ('DH', 'DH'),
+        ('PH', 'PH'),
         )
 
 class Team(models.Model):
