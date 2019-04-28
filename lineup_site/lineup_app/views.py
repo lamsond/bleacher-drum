@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Game, LineupSlot, Player, Team
@@ -32,7 +32,18 @@ def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
 
 def set_lineup(request, game_id):
-    return HttpResponse("<h1>Coming soon...</h1>")
+    game = get_object_or_404(Game, pk=game_id)
+    nyy = Team.objects.get(abbr='NYY')
+    players = Player.objects.filter(team=nyy)
+    positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH')
+    slot_indices = range(1, 10)
+    context = {'game': game,
+            'players': players,
+            'positions': positions,
+            'slots': slot_indices,
+            }
+
+    return render(request, 'lineup_app/set_lineup.html', context)
 
 def new_team(request):
     if request.method == 'POST':
@@ -48,8 +59,9 @@ def new_game(request):
     if request.method == 'POST':
         form = GameForm(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/play_ball/')
+            this_game = form.save()
+            game_id = this_game.id
+            return HttpResponseRedirect('/' + str(game_id) + '/set_lineup/')
     else:
         form = GameForm()
     return render(request, 'lineup_app/new_game.html', {'form': form})
