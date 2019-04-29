@@ -35,7 +35,7 @@ def set_lineup(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     nyy = Team.objects.get(abbr='NYY')
     players = Player.objects.filter(team=nyy)
-    positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH')
+    positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'PH')
     slot_indices = range(1, 10)
     context = {'game': game,
             'players': players,
