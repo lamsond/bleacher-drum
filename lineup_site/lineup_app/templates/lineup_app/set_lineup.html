@@ -176,18 +176,19 @@ body{
 				<ol class='dev'>
 					{% for slot in slots %}
 					<li>
-						<select id='play1' class='play-select'>
+						<select id='player{{slot}}' class='play-select'>
 							<option value=''>select player</option>
 						{% for player in players %}
 							<option value={{ player.id }}>{{ player.name }}</option>
 						{% endfor %}
 						</select>
-						<select id='pos1' class='pos-select'>
+						<select id='position{{slot}}' class='pos-select'>
 							<option value=''>pos</option>
 						{% for position in positions %}
 							<option value={{ position }}>{{ position }}</option>
 						{% endfor %}
 						</select>
+						<input type='submit' value='set'>
 					</li>
 					{% endfor %}
 				</ol>
