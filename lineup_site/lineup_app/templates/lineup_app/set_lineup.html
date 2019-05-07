@@ -208,13 +208,27 @@ body{
 		</div>
 <script src="{% static 'lineup_app/score-box.js' %}"></script>
 <script>
+
+var lineup_state = new Array(9);
+
+/* get page elements */
+const set_buttons = Array.from(document.querySelectorAll('.set-btn'));
+const player_inputs = Array.from(document.querySelectorAll('.play-select'));
+const pos_inputs = Array.from(document.querySelectorAll('.pos-select'));
+
 /* lineup button setup */
 function set_lineup(e){
-	console.log(this.id);
+	let slot = this.id.charAt(this.id.length-1);
+	//console.log(slot);
+	let player = player_inputs[slot-1].value;
+	//console.log(player);
+	let pos = pos_inputs[slot-1].value;
+	//console.log(pos);
+
+	lineup_state[slot-1] = {slot: slot, player: player, pos: pos};
+	console.log(lineup_state);
 }
 
-
-const set_buttons = Array.from(document.querySelectorAll('.set-btn'));
 set_buttons.forEach(button => button.addEventListener('click', set_lineup));
 
 </script>
