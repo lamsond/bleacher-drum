@@ -16,8 +16,9 @@ class GameForm(ModelForm):
                 'date': SelectDateWidget
                 }
 
-
-
-
+class LineupForm(ModelForm):
+    class Meta:
+        model = LineupSlot
+        fields = ['game', 'player', 'num', 'pos', 'starter']
 
 
