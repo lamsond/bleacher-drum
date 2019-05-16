@@ -171,7 +171,7 @@ body{
 				</table>
 			</div>
 			<h3>create a new team</h3>
-			<form class='lineup-card dev' method='post'>
+			<form class='lineup-card dev' method='post' action='/save_lineup/'>
 				{% csrf_token %}
 				<ol class='dev'>
 					{% for slot in slots %}
@@ -193,6 +193,7 @@ body{
 					{% endfor %}
 				</ol>
 				<input type='submit' value='set lineup'>
+				<input type='hidden' id='lineup-json'></input>
 			</form>
 			<div class='sidebar dev'>
 				<ul class='score-controls dev'>
@@ -215,6 +216,7 @@ var lineup_state = new Array(9);
 const set_buttons = Array.from(document.querySelectorAll('.set-btn'));
 const player_inputs = Array.from(document.querySelectorAll('.play-select'));
 const pos_inputs = Array.from(document.querySelectorAll('.pos-select'));
+const lineup_json = document.querySelector('#lineup_json');
 
 /* lineup button setup */
 function set_lineup(e){
@@ -227,7 +229,17 @@ function set_lineup(e){
 
 	lineup_state[slot-1] = {slot: slot, player: player, pos: pos};
 	console.log(lineup_state);
+	lineup_json.value = lineup_full() ? lineup_state:'';
 }
+
+const lineup_full = () => {
+	for(let i = 0; i < 9; i++){
+		if(!lineup_state[i]){
+			return false;
+		}
+	}
+	return true;
+};
 
 set_buttons.forEach(button => button.addEventListener('click', set_lineup));
 

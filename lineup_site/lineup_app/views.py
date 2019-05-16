@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -44,6 +46,9 @@ def set_lineup(request, game_id):
             }
 
     return render(request, 'lineup_app/set_lineup.html', context)
+
+def save_lineup(request):
+    return 0
 
 def new_team(request):
     if request.method == 'POST':
