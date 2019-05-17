@@ -244,9 +244,12 @@ const lineup_full = () => {
 const stringulator = (arr_2d) => {
 	let new_arr = [];
 	for(let i = 0; i < arr_2d.length; i++){
-		new_arr.push(JSON.stringify(arr_2d[i]);
-	}
-	return JSON.stringify(new_arr);
+
+		new_arr.push(JSON.stringify(arr_2d[i]));
+}
+	const lovestring = JSON.stringify(new_arr);
+	console.log(lovestring);
+	return lovestring;
 };
 
 set_buttons.forEach(button => button.addEventListener('click', set_lineup));

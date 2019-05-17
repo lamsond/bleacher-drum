@@ -54,6 +54,13 @@ def save_lineup(request):
         return render(request, 'lineup_app/set_lineup.html', {'error_message': "You didn't set a lineup"})
 
     print(data)
+    data_dicts = []
+    for record in data:
+        data_dicts.append(json.loads(record))
+
+
+    print(data_dicts)
+
     return HttpResponseRedirect('/1/set_lineup')
 
 def new_team(request):
