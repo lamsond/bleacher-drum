@@ -48,7 +48,13 @@ def set_lineup(request, game_id):
     return render(request, 'lineup_app/set_lineup.html', context)
 
 def save_lineup(request):
-    return 0
+    
+    data = request.POST['hidden']
+    if data == '':
+        return render(request, 'lineup_app/set_lineup.html', {'error_message': "You didn't set a lineup"})
+
+    print(data)
+    return HttpResponseRedirect('/1/set_lineup')
 
 def new_team(request):
     if request.method == 'POST':

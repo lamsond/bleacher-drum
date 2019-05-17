@@ -193,7 +193,7 @@ body{
 					{% endfor %}
 				</ol>
 				<input type='submit' value='set lineup'>
-				<input type='hidden' id='lineup-json'></input>
+				<input type='hidden' id='lineup-json' name='hidden'></input value=''>
 			</form>
 			<div class='sidebar dev'>
 				<ul class='score-controls dev'>
@@ -216,7 +216,7 @@ var lineup_state = new Array(9);
 const set_buttons = Array.from(document.querySelectorAll('.set-btn'));
 const player_inputs = Array.from(document.querySelectorAll('.play-select'));
 const pos_inputs = Array.from(document.querySelectorAll('.pos-select'));
-const lineup_json = document.querySelector('#lineup_json');
+const lineup_json = document.querySelector('#lineup-json');
 
 /* lineup button setup */
 function set_lineup(e){
@@ -229,7 +229,7 @@ function set_lineup(e){
 
 	lineup_state[slot-1] = {slot: slot, player: player, pos: pos};
 	console.log(lineup_state);
-	lineup_json.value = lineup_full() ? lineup_state:'';
+	lineup_json.value = lineup_full() ? stringulator(lineup_state):'';
 }
 
 const lineup_full = () => {
@@ -239,6 +239,14 @@ const lineup_full = () => {
 		}
 	}
 	return true;
+};
+
+const stringulator = (arr_2d) => {
+	let new_arr = [];
+	for(let i = 0; i < arr_2d.length; i++){
+		new_arr.push(JSON.stringify(arr_2d[i]);
+	}
+	return JSON.stringify(new_arr);
 };
 
 set_buttons.forEach(button => button.addEventListener('click', set_lineup));
