@@ -47,19 +47,29 @@ def set_lineup(request, game_id):
 
     return render(request, 'lineup_app/set_lineup.html', context)
 
-def save_lineup(request):
-    
+def save_lineup(request, game_id):
     data = request.POST['hidden']
     if data == '':
         return render(request, 'lineup_app/set_lineup.html', {'error_message': "You didn't set a lineup"})
 
-    print(data)
+    data_list = data.split()
+    data_strings = json.loads(data_list[0])
+    print(data_strings)
     data_dicts = []
-    for record in data:
-        data_dicts.append(json.loads(record))
-
+    for item in data_strings:
+        data_dicts.append(json.loads(item))
 
     print(data_dicts)
+
+    for lineup_slot in data_dicts:
+        game = get_object_or_404(Game, pk=game_id)
+        player = get_object_or_404(Player, pk=lineup_slot["player"])
+        pos = lineup_slot["pos"]
+        slot = lineup_slot["slot"]
+
+
+
+
 
     return HttpResponseRedirect('/1/set_lineup')
 

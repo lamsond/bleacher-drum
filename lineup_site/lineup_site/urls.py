@@ -31,7 +31,7 @@ urlpatterns = [
     path('new_game/', views.new_game),
     path('new_team/', views.new_team),
     path('<int:game_id>/set_lineup/', views.set_lineup),
-    path('save_lineup/', views.save_lineup),
+    path('<int:game_id>/save_lineup/', views.save_lineup),
     path('admin/', admin.site.urls),
     # path('', include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

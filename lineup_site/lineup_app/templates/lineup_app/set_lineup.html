@@ -171,7 +171,7 @@ body{
 				</table>
 			</div>
 			<h3>create a new team</h3>
-			<form class='lineup-card dev' method='post' action='/save_lineup/'>
+			<form class='lineup-card dev' method='post' action='../save_lineup/'>
 				{% csrf_token %}
 				<ol class='dev'>
 					{% for slot in slots %}
