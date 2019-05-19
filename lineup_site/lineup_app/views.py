@@ -67,9 +67,9 @@ def save_lineup(request, game_id):
         pos = lineup_slot["pos"]
         slot = lineup_slot["slot"]
 
-
-
-
+        lineup_entry = LineupSlot(game=game, player=player, num=slot, pos=pos,
+                starter=0)
+        lineup_entry.save()
 
     return HttpResponseRedirect('/1/set_lineup')
 
