@@ -8,6 +8,7 @@ const lineup_json = document.querySelector('#lineup-json');
 
 /* lineup button setup */
 function set_lineup(e){
+	const border_style = '3px solid black';
 	let slot = this.id.charAt(this.id.length-1);
 	//console.log(slot);
 	let player = player_inputs[slot-1].value;
@@ -18,7 +19,12 @@ function set_lineup(e){
 	lineup_state[slot-1] = {slot: slot, player: player, pos: pos};
 	console.log(lineup_state);
 	lineup_json.value = lineup_full() ? stringulator(lineup_state):'';
+	
+	this.disabled = true;
+	player_inputs[slot-1].style.border = border_style;
+	pos_inputs[slot-1].style.border = border_style;
 }
+ 
 
 const lineup_full = () => {
 	for(let i = 0; i < 9; i++){
