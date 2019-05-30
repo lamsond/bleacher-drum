@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title>Lineup App</title>
+		<link rel='stylesheet' type='text/css'  href="{% static 'lineup_app/style.css' %}">
+	</head>
+	<body>
+		<div class='nav-bar dev'>
+			<ul class='dev'>
+				<li>&lt;</li>
+				<li>scorecards</li>
+				<li>logo</li>
+				<li>new card</li>
+				<li>&gt;</li>
+			</ul>
+		</div>		
+		<div class='content dev'>
+			<canvas id='position-chart' class='dev' width='300px' height='250px'></canvas>
+			<div class='game-details dev'>
+				<h3 class='gameday dev'>{{ game.date }}</h3>
+				<table class='scorebox dev'>
+					<tbody>
+						<tr>
+							<th>{{ game.team_away }}</th>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<th>&nbsp;</th>
+						</tr>
+						<tr>
+							<th>{{ game.team_home }}</th>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<th>&nbsp;</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3>create a new team</h3>
+			<form class='lineup-card dev' method='post' action=''>
+				{% csrf_token %}
+				<ol class='dev'>
+					{% for slot in slots %}
+					<li>
+						<select id='player{{ slot }}' class='play-select'>
+							<option value=''>select player</option>
+						{% for player in players %}
+							<option value={{ player.id }}>{{ player.name }}</option>
+						{% endfor %}
+						</select>
+						<input id='set{{ slot }}' class='set-btn' type='button' value='set'>
+					</li>
+					{% endfor %}
+				</ol>
+				<input type='submit' value='set lineup'>
+				<input type='hidden' id='lineup-json' name='hidden'></input value=''>
+			</form>
+			<div class='sidebar dev'>
+				<ul class='score-controls dev'>
+					<li>next</li>
+					<li>save</li>
+					<li>reset</li>
+					<li>bullpen</li>
+				</ul>
+			</div>
+		</div>
+		<div class='footer dev'>
+			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
+		</div>
+		<script src="{% static 'lineup_app/score-box.js' %}"></script>
+		<script>
+
+const pitcher_selects = document.querySelectorAll('.play-select');
+pitcher_selects.forEach((pitcher, i) => {
+		pitcher.style.display = i == 0 ? 'inline':'none';
+});
+
+const set_buttons = document.querySelectorAll('.set-btn');
+set_buttons.forEach((button, i) => {
+	button.style.display = i == 0 ? 'inline':'none';
+	button.addEventListener('click', show_next);
+});
+
+function show_next(e){
+	let n = this.id.charAt(this.id.length-1);
+	console.log(n);
+	pitcher_selects[n].style.display = 'inline';
+	set_buttons[n].style.display = 'inline';
+}
+		</script>
+	</body>
+</html>
+
+

@@ -6,30 +6,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Game, LineupSlot, Player, Team
 from .forms import TeamForm, GameForm
 
-from rest_framework import viewsets
-from .serializers import GameSerializer, PlayerSerializer, TeamSerializer
-
-class GameViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows games to be viewed or edited
-    """
-    queryset = Game.objects.all().order_by('-date')
-    serializer_class = GameSerializer
-
-class PlayerViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows players to be viewed or edited
-    """
-    queryset = Player.objects.all()
-    serializer_class = PlayerSerializer
-
-class TeamViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows teams to be viewed or edited
-    """
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-
 def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
 
@@ -46,6 +22,19 @@ def set_lineup(request, game_id):
             }
 
     return render(request, 'lineup_app/set_lineup.html', context)
+
+def set_pitchers(request, game_id):
+    game = Game.objects.get(pk=game_id)
+    nyy = Team.objects.get(abbr='NYY')
+    players = Player.objects.filter(team=nyy)
+    slot_indices = range(1, 13)
+
+    context = {'game': game,
+            'players': players,
+            'slots': slot_indices,
+            }
+
+    return render(request, 'lineup_app/set_pitchers.html', context)
 
 def save_lineup(request, game_id):
     data = request.POST['hidden']
@@ -71,7 +60,7 @@ def save_lineup(request, game_id):
                 starter=0)
         lineup_entry.save()
 
-    return HttpResponseRedirect('/1/set_lineup')
+    return HttpResponseRedirect('/'+str(game_id)+'/set_pitchers/')
 
 def new_team(request):
     if request.method == 'POST':
