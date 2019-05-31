@@ -37,6 +37,7 @@ def set_pitchers(request, game_id):
     return render(request, 'lineup_app/set_pitchers.html', context)
 
 def save_lineup(request, game_id):
+    pitchers = True
     data = request.POST['hidden']
     if data == '':
         return render(request, 'lineup_app/set_lineup.html', {'error_message': "You didn't set a lineup"})
@@ -54,13 +55,17 @@ def save_lineup(request, game_id):
         game = get_object_or_404(Game, pk=game_id)
         player = get_object_or_404(Player, pk=lineup_slot["player"])
         pos = lineup_slot["pos"]
+        if pos != 'P':
+            pitchers = False
         slot = lineup_slot["slot"]
 
         lineup_entry = LineupSlot(game=game, player=player, num=slot, pos=pos,
                 starter=0)
         lineup_entry.save()
-
-    return HttpResponseRedirect('/'+str(game_id)+'/set_pitchers/')
+        url = '/' + str(game_id) + '/set_pitchers/'
+        if pitchers:
+            url = '/batter_up/'
+    return HttpResponseRedirect(url)
 
 def new_team(request):
     if request.method == 'POST':
