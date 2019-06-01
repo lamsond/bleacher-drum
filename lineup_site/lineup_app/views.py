@@ -59,12 +59,12 @@ def save_lineup(request, game_id):
             pitchers = False
         slot = lineup_slot["slot"]
 
-        lineup_entry = LineupSlot(game=game, player=player, num=slot, pos=pos,
-                starter=0)
+        lineup_entry = LineupSlot(game=game, player=player, num=10, pos=pos,
+                starter=int(slot)-1)
         lineup_entry.save()
         url = '/' + str(game_id) + '/set_pitchers/'
         if pitchers:
-            url = '/batter_up/'
+            url = '/new_game/'
     return HttpResponseRedirect(url)
 
 def new_team(request):

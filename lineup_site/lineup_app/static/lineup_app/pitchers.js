@@ -29,6 +29,9 @@ function set_lineup(e){
 	lineup_state.push({slot: slot, player: player, pos: pos});
 	console.log(lineup_state);
 	lineup_json.value = stringulator(lineup_state);
+
+	this.disabled = true;
+	pitcher_selects[slot-1].style.border = border_style;
 }
 
 const stringulator = (arr_2d) => {
