@@ -25,5 +25,6 @@ urlpatterns = [
     path('<int:game_id>/set_lineup/', views.set_lineup),
     path('<int:game_id>/set_pitchers/', views.set_pitchers),
     path('<int:game_id>/save_lineup/', views.save_lineup),
+    path('<int:game_id>/noodle/', views.noodle),
     path('admin/', admin.site.urls),
 ]
