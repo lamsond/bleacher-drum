@@ -25,42 +25,44 @@
 				</ul>
 			</div>
 		</nav>		
-		<div class='content dev'>
-			<canvas id='position-chart' class='dev' width='300px' height='250px'></canvas>
-			<div class='game-details dev'>
-				<h3 class='gameday dev'>{{ game.date }}</h3>
-				<table class='scorebox dev'>
-					<tbody>
-						<tr>
-							<th>{{ game.team_away }}</th>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<th>&nbsp;</th>
-						</tr>
-						<tr>
-							<th>{{ game.team_home }}</th>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<th>&nbsp;</th>
-						</tr>
-					</tbody>
-				</table>
+		<div class='container'>
+			<div class='row'>
+				<canvas id='position-chart' class='col-5 col-sm-4' width='300px' height='250px'></canvas>
+				<div class='col-sm-8' id='scoreboard-div'>	
+					<h3>{{ game.date }}</h3>
+					<table class='table table-bordered'>
+						<tbody>
+							<tr>
+								<th>{{ game.team_away }}</th>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<th>{{ game.team_home }}</th>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<th>&nbsp;</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-			<h3>create a new team</h3>
+				<h3>Set NYY Lineup</h3>
 			<form class='lineup-card dev' method='post' action='../save_lineup/'>
 				{% csrf_token %}
 				<ol class='dev'>
@@ -78,7 +80,7 @@
 							<option value={{ position }}>{{ position }}</option>
 						{% endfor %}
 						</select>
-						<input id='set{{ slot }}' class='set-btn' type='button' value='set'>
+						<input id='set{{ slot }}' class='set-btn btn btn-primary' type='button' value='set'>
 					</li>
 					{% endfor %}
 				</ol>
