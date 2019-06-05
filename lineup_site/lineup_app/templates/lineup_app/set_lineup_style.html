@@ -11,7 +11,7 @@
 <style>
 .top-row{
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 }
 
@@ -19,7 +19,13 @@
 	display: flex;
 	text-align: center;
 	flex-direction: column;
-}	
+	justify-content: space-around;
+}
+
+.btn-success{
+	margin-top: 5px;
+}
+
 </style>
 	</head>
 	<body>
@@ -76,7 +82,7 @@
 				</div>
 			</div>
 				<h3>Set NYY Lineup</h3>
-			<form class='lineup-card dev' method='post' action='../save_lineup/'>
+			<form class='lineup-card form-group' method='post' action='../save_lineup/'>
 				{% csrf_token %}
 				<ol class='dev'>
 					{% for slot in slots %}
@@ -93,22 +99,13 @@
 							<option value={{ position }}>{{ position }}</option>
 						{% endfor %}
 						</select>
-						<input id='set{{ slot }}' class='set-btn btn btn-primary' type='button' value='set'>
+						<input id='set{{ slot }}' class='set-btn btn btn-success' type='button' value='set'>
 					</li>
 					{% endfor %}
 				</ol>
-				<input type='submit' value='set lineup'>
+				<input type='submit' value='set lineup' class='btn btn-primary'>
 				<input type='hidden' id='lineup-json' name='hidden' value=''></input>
 			</form>
-			<div class='sidebar dev'>
-				<ul class='score-controls dev'>
-					<li>next</li>
-					<li>save</li>
-					<li>reset</li>
-					<li>bullpen</li>
-				</ul>
-			</div>
-		</div>
 		<div class='footer dev'>
 			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
 		</div>
