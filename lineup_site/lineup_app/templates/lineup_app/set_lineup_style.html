@@ -8,6 +8,19 @@
 		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-grid.css' %}">
 		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-reboot.css' %}">
 		<!--<link rel='stylesheet' type='text/css'  href="% static 'lineup_app/style.css' %">-->
+<style>
+.top-row{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#scoreboard-div{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+}	
+</style>
 	</head>
 	<body>
 		<nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
@@ -26,9 +39,9 @@
 			</div>
 		</nav>		
 		<div class='container'>
-			<div class='row'>
-				<canvas id='position-chart' class='col-5 col-sm-4' width='300px' height='250px'></canvas>
-				<div class='col-sm-8' id='scoreboard-div'>	
+			<div class='top-row'>
+				<canvas id='position-chart' class='' width='150px' height='125px'></canvas>
+				<div class='' id='scoreboard-div'>	
 					<h3>{{ game.date }}</h3>
 					<table class='table table-bordered'>
 						<tbody>

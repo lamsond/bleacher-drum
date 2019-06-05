@@ -2,9 +2,9 @@
 
 const canvas = document.querySelector('#position-chart')
 const ctx = canvas.getContext('2d');
-const dim = 250;
-const w = 300;
-const base_dist = 100;
+const dim = 125;
+const w = 150;
+const base_dist = 50;
 const inf_sf = 1.5;
 
 const light_grass = '#4e8a4d';
@@ -39,7 +39,7 @@ function draw_diamond(x, y, size, color){
 }
 
 function draw_homeplate(x, y){
-	const size = 8;
+	const size = 4;
 	ctx.fillStyle = 'white';
 	ctx.moveTo(x, y);
 	ctx.beginPath();
@@ -54,7 +54,7 @@ function draw_homeplate(x, y){
 function draw_infield(){
 	ctx.fillStyle = sandlot;
 	ctx.beginPath();
-	ctx.arc(w/2, dim-inf_sf/2*base_dist-7, inf_sf*base_dist*0.76, -Math.PI/8, -7*Math.PI/8, true);
+	ctx.arc(w/2, dim-inf_sf/2*base_dist-12, inf_sf*base_dist*0.76, -Math.PI/8, -7*Math.PI/8, true);
 	ctx.fill();
 	ctx.beginPath();
 	ctx.moveTo(points[0][0], points[0][1]);
@@ -66,10 +66,10 @@ function draw_infield(){
 
 draw_infield();
 draw_diamond(w/2, dim-20, base_dist, sandlot);
-draw_diamond(w/2, dim-30, base_dist-15, light_grass);
-draw_circle(w/2, dim-25, 18, sandlot);
-draw_circle(w/2, dim-20-0.5*base_dist*Math.sqrt(2), 10, sandlot);
-draw_homeplate(w/2, dim-18);
+draw_diamond(w/2, dim-25, base_dist-15, light_grass);
+draw_circle(w/2, dim-25, 9, sandlot);
+draw_circle(w/2, dim-13-0.5*base_dist*Math.sqrt(2), 5, sandlot);
+draw_homeplate(w/2, dim-22);
 
 
 
