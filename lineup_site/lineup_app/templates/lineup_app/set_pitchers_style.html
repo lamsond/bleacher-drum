@@ -3,7 +3,7 @@
 <html lang='en'>
 	<head>
 		<meta charset='utf-8'>
-		<title>set lineup</title>
+		<title>set pitchers</title>
 		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap.css' %}">
 		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-grid.css' %}">
 		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-reboot.css' %}">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-		<h3>Set NYY Lineup</h3>
+		<h3>Set NYY Pitchers</h3>
 		<form class='lineup-card form-group' method='post' action='../save_lineup/'>
 			{% csrf_token %}
 			<ol class='dev'>
@@ -94,18 +94,12 @@
 						<option value={{ player.id }}>{{ player.name }}</option>
 					{% endfor %}
 					</select>
-					<select id='position{{ slot }}' class='pos-select'>
-						<option value=''>pos</option>
-					{% for position in positions %}
-						<option value={{ position }}>{{ position }}</option>
-					{% endfor %}
-					</select>
 					<input id='set{{ slot }}' class='set-btn btn btn-success' type='button' value='set'>
 				</li>
 				{% endfor %}
 			</ol>
 			<input type='submit' value='set lineup' class='btn btn-primary'>
-			<input type='hidden' id='lineup-json' name='hidden' value=''></input>
+			<input type='hidden' id='lineup-json' name='hidden'></input value=''>
 		</form>
 		<div class='footer dev'>
 			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
@@ -114,8 +108,7 @@
 		<script src="{% static 'lineup_app/bootstrap.js' %}"></script>
 		<script src="{% static 'lineup_app/bootstrap.bundle.js' %}"></script>
 		<script src="{% static 'lineup_app/score-box.js' %}"></script>
-		<script src="{% static 'lineup_app/lineup-setter.js' %}"></script>
+		<script src="{% static 'lineup_app/pitchers.js' %}"></script>
 	</body>
 </html>
-
 
