@@ -1,14 +1,7 @@
-<!DOCTYPE html>
+{% extends 'lineup_app/header.html' %}
 {% load static %}
-<html lang='en'>
-	<head>
-		<meta charset='utf-8'>
-		<title>set lineup</title>
-		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap.css' %}">
-		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-grid.css' %}">
-		<link rel='stylesheet' type='text/css' href="{% static 'lineup_app/bootstrap-reboot.css' %}">
-		<!--<link rel='stylesheet' type='text/css'  href="% static 'lineup_app/style.css' %">-->
-<style>
+{% block title %}set lineup{% endblock %}
+{% block css %}
 .top-row{
 	display: flex;
 	justify-content: space-around;
@@ -25,99 +18,37 @@
 .btn-success{
 	margin-top: 5px;
 }
-
-</style>
-	</head>
-	<body>
-		<nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
-			<a class='navbar-brand' href='#'>Bleacher Drum</a>
-			<button class='navbar-toggler' type='button' data-toggle='collapse' aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class='navbar-toggler-icon'></span>
-			</button>
-			<div class='collapse navbar-collapse' id='navbarNav'>
-				<ul class='navbar-nav'>
-					<li class='nav-item'><a class='nav-link' href='#'>Teams</a></li>
-					<li class='nav-item'><a class='nav-link' href='#'>Players</a></li>
-					<li class='nav-item'><a class='nav-link' href='#'>Games</a></li>
-					<li class='nav-item'><a class='nav-link' href='#'>Stats</a></li>	
-					<li class='nav-item'><a class='nav-link' href='#'>About</a></li>
-				</ul>
-			</div>
-		</nav>		
-		<div class='container'>
-			<div class='top-row'>
-				<canvas id='position-chart' class='' width='150px' height='125px'></canvas>
-				<div class='' id='scoreboard-div'>	
-					<h3>{{ game.date }}</h3>
-					<table class='table table-bordered'>
-						<tbody>
-							<tr>
-								<th>{{ game.team_away }}</th>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<th>&nbsp;</th>
-							</tr>
-							<tr>
-								<th>{{ game.team_home }}</th>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<th>&nbsp;</th>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class='container'>
-			<h3>Set NYY Lineup</h3>
-			<form class='lineup-card form-group' method='post' action='../save_lineup/'>
-				{% csrf_token %}
-				<ol class='dev'>
-					{% for slot in slots %}
-					<li>
-						<select id='player{{ slot }}' class='play-select'>
-							<option value=''>select player</option>
-							{% for player in players %}
-							<option value={{ player.id }}>{{ player.name }}</option>
-							{% endfor %}
-						</select>
-						<select id='position{{ slot }}' class='pos-select'>
-							<option value=''>pos</option>
-							{% for position in positions %}
-							<option value={{ position }}>{{ position }}</option>
-							{% endfor %}
-						</select>
-						<input id='set{{ slot }}' class='set-btn btn btn-success' type='button' value='set'>
-					</li>
-					{% endfor %}
-				</ol>
-				<input type='submit' value='set lineup' class='btn btn-primary'>
-				<input type='hidden' id='lineup-json' name='hidden' value=''></input>
-			</form>
-		</div>
-		<div class='footer dev'>
-			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
-		</div>
-		<script src="{% static 'lineup_app/jquery.js' %}"></script>
-		<script src="{% static 'lineup_app/bootstrap.js' %}"></script>
-		<script src="{% static 'lineup_app/bootstrap.bundle.js' %}"></script>
-		<script src="{% static 'lineup_app/score-box.js' %}"></script>
-		<script src="{% static 'lineup_app/lineup-setter.js' %}"></script>
-	</body>
-</html>
+{% endblock %}
+{% block content %}
+<h3>Set NYY Lineup</h3>
+<form class='lineup-card form-group' method='post' action='../save_lineup/'>
+	{% csrf_token %}
+	<ol class='dev'>
+		{% for slot in slots %}
+		<li>
+			<select id='player{{ slot }}' class='play-select'>
+				<option value=''>select player</option>
+				{% for player in players %}
+				<option value={{ player.id }}>{{ player.name }}</option>
+				{% endfor %}
+			</select>
+			<select id='position{{ slot }}' class='pos-select'>
+				<option value=''>pos</option>
+				{% for position in positions %}
+				<option value={{ position }}>{{ position }}</option>
+				{% endfor %}
+			</select>
+			<input id='set{{ slot }}' class='set-btn btn btn-success' type='button' value='set'>
+		</li>
+		{% endfor %}
+	</ol>
+	<input type='submit' value='set lineup' class='btn btn-primary'>
+	<input type='hidden' id='lineup-json' name='hidden' value=''></input>
+</form>
+{% endblock %}
+{% block js %}
+<script src="{% static 'lineup_app/score-box.js' %}"></script>
+<script src="{% static 'lineup_app/lineup-setter.js' %}"></script>
+{% endblock %}
 
 

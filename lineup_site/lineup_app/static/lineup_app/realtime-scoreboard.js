@@ -8,7 +8,7 @@ const away_team = document.querySelector('#id_team_away');
 const home_team = document.querySelector('#id_team_home');
  
 // get scoreboard elements
-const gameday = document.querySelector('.gameday');
+const gameday = document.querySelector('#gameday');
 const away_team_sb = document.querySelector('#away-team-sb');
 const home_team_sb = document.querySelector('#home-team-sb');
  

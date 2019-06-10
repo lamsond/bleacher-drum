@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     #dev apps
     'lineup_app',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
