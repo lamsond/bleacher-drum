@@ -1,0 +1,36 @@
+{% extends 'lineup_app/header.html' %}
+{% load static %}
+{% block title %}players{% endblock %}
+
+{% block css %}
+.top-row{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#scoreboard-div{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.btn-success{
+	margin-top: 5px;
+}
+{% endblock %}
+
+{% block content %}
+<h3>players</h3>
+<ul>
+    {% for player in players %}
+    <li>{{ player }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'lineup_app/score-box.js' %}"></script>
+<script src="{% static 'lineup_app/realtime-scoreboard.js' %}"></script>
+{% endblock %}

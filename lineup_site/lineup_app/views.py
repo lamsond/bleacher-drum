@@ -88,6 +88,21 @@ def new_game(request):
         form = GameForm()
     return render(request, 'lineup_app/new_game.html', {'form': form})
 
+def view_games(request):
+    games = Game.objects.order_by('-date').all()
+    context = {'games': games}
+    return render(request, 'lineup_app/view_games.html', context)
+
+def view_teams(request):
+    teams = Team.objects.order_by('abbr').all()
+    context = {'teams': teams}
+    return render(request, 'lineup_app/view_teams.html', context)
+
+def view_players(request):
+    players = Player.objects.order_by('team').all()
+    context = {'players': players}
+    return render(request, 'lineup_app/view_players.html', context)
+
 def noodle(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     nyy = Team.objects.get(abbr='NYY')
