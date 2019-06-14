@@ -23,9 +23,9 @@
 <h3>Set NYY Lineup</h3>
 <form class='lineup-card form-group' method='post' action='../save_lineup/'>
 	{% csrf_token %}
-	<ol class='dev'>
+	<ol class=''>
 		{% for slot in slots %}
-		<li>
+		<li class=''>
 			<select id='player{{ slot }}' class='play-select'>
 				<option value=''>select player</option>
 				{% for player in players %}

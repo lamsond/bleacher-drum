@@ -23,9 +23,9 @@
 
 {% block content %}
 <h3>players</h3>
-<ul>
+<ul class='list-group'>
     {% for player in players %}
-    <li>{{ player }}</li>
+    <li class='list-group-item'> {{ player }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
