@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #default apps
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', # thanks django!
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -128,3 +128,5 @@ REST_FRAMEWORK = {
         'PAGE_SIZE': 10
         }
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

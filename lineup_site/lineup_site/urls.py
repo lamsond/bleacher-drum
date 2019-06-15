@@ -19,6 +19,8 @@ from django.urls import include, path
 from lineup_app import views
 
 urlpatterns = [
+    path('', views.index),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('play_ball/', views.play_ball),
     path('new_game/', views.new_game),
     path('new_team/', views.new_team),

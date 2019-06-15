@@ -6,6 +6,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Game, LineupSlot, Player, Team
 from .forms import TeamForm, GameForm
 
+def index(request):
+    return render(request, 'lineup_app/index.html')
+
 def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
 
