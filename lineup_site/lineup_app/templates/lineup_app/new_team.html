@@ -25,7 +25,7 @@
 <h3>create a new team</h3>
 <form class='lineup-card form-group' method='post'>
 	{% csrf_token %}
-	<ul class='dev'>
+	<ul class='list-group' id='modelform-team'>
 		{{ form.as_ul }}
 	</ul>
 	<input type='submit' value='save' class='btn btn-primary'>
@@ -34,4 +34,10 @@
 
 {% block js %}
 <script src="{% static 'lineup_app/score-box.js' %}"></script>
+<script>
+	const items = document.querySelectorAll('#modelform-team li');
+	items.forEach(item => {
+		item.classList.add('list-group-item');
+	});
+</script>
 {% endblock %}

@@ -19,20 +19,28 @@
 .btn-success{
 	margin-top: 5px;
 }
+
 {% endblock %}
 
 {% block content %}
 <h3>new game</h3>
 <form class='lineup-card form-group' method='post'>
 	{% csrf_token %}
-	<ul class='dev'>
-		{{ form.as_ul }}
+	<ul class='list-group' id='modelform-game'>
+	{{ form.as_ul }}
 	</ul>
 	<input type='submit' value='save' class='btn btn-primary'>
+	<a href='/new_team/' class='btn btn-secondary'>Add a New Team</a>
 </form>
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'lineup_app/score-box.js' %}"></script>
 <script src="{% static 'lineup_app/realtime-scoreboard.js' %}"></script>
+<script>
+	const items = document.querySelectorAll('#modelform-game li');
+	items.forEach(item => {
+		item.classList.add('list-group-item');
+	});
+</script>
 {% endblock %}
