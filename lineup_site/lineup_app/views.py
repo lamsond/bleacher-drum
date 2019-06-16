@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 from .models import Game, LineupSlot, Player, Team
 from .forms import TeamForm, GameForm
@@ -29,6 +30,7 @@ def register(request):
 def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
 
+@login_required
 def set_lineup(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     nyy = Team.objects.get(abbr='NYY')
@@ -43,6 +45,7 @@ def set_lineup(request, game_id):
 
     return render(request, 'lineup_app/set_lineup.html', context)
 
+@login_required
 def set_pitchers(request, game_id):
     game = Game.objects.get(pk=game_id)
     nyy = Team.objects.get(abbr='NYY')
@@ -56,6 +59,7 @@ def set_pitchers(request, game_id):
 
     return render(request, 'lineup_app/set_pitchers.html', context)
 
+@login_required
 def save_lineup(request, game_id):
     pitchers = True
     data = request.POST['hidden']
@@ -87,39 +91,66 @@ def save_lineup(request, game_id):
             url = '/new_game/'
     return HttpResponseRedirect(url)
 
+@login_required
 def new_team(request):
     if request.method == 'POST':
         form = TeamForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_team = form.save(commit=False)
+            new_team.owner = request.user
+            new_team.save()
             return HttpResponseRedirect('/new_game/')
     else:
         form = TeamForm()
     return render(request, 'lineup_app/new_team.html', {'form': form})
+@login_required
+def new_player(request):
+    if request.method == 'POST':
+        name = request.POST['player_name']
+        num = int(request.POST['player_num'])
+        team = Team.objects.get(abbr=request.POST['team'])
+        owner = request.user
+        new_player = Player(name=name, num=num, team=team, owner=owner)
+        new_player.save()
+        return HttpResponseRedirect('/')
 
+    teams = Team.objects.filter(owner=request.user).all()
+    context = {'teams': teams}
+    return render(request, 'lineup_app/new_player.html', context)
+
+
+@login_required
 def new_game(request):
     if request.method == 'POST':
         form = GameForm(request.POST)
         if form.is_valid():
-            this_game = form.save()
+            this_game = form.save(commit=False)
+            this_game.owner = request.user
+            this_game.save()
             game_id = this_game.id
             return HttpResponseRedirect('/' + str(game_id) + '/set_lineup/')
     else:
         form = GameForm()
+        form.fields['team_home'].queryset = Team.objects.filter(owner=request.user)
+        form.fields['team_away'].queryset = Team.objects.filter(owner=request.user)
     return render(request, 'lineup_app/new_game.html', {'form': form})
 
+
+@login_required
 def view_games(request):
-    games = Game.objects.order_by('-date').all()
+    games = Game.objects.filter(owner=request.user).order_by('-date').all()
     context = {'games': games}
     return render(request, 'lineup_app/view_games.html', context)
 
+@login_required
 def view_teams(request):
-    teams = Team.objects.order_by('abbr').all()
+    teams = Team.objects.filter(owner=request.user).order_by('abbr').all()
     context = {'teams': teams}
     return render(request, 'lineup_app/view_teams.html', context)
 
+@login_required
 def view_players(request):
-    players = Player.objects.order_by('team').all()
+    players = Player.objects.filter(owner=request.user).order_by('team').all()
     context = {'players': players}
     return render(request, 'lineup_app/view_players.html', context)
 

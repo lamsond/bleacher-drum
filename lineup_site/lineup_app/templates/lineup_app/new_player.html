@@ -1,0 +1,52 @@
+{% extends 'lineup_app/header.html' %}
+{% load static %}
+{% block title %}new player{% endblock %}
+
+{% block css %}
+.top-row{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#scoreboard-div{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.btn-success{
+	margin-top: 5px;
+}
+{% endblock %}
+
+{% block content %}
+<h3>new player</h3>
+<form class='lineup-card form-group' method='post'>
+	{% csrf_token %}
+	<ul class='list-group'>
+        <li class='list-group-item'>
+            <label for='player_name'>Name: </label>
+            <input type='text' name='player_name' id='player_name'>
+        </li>
+        <li class='list-group-item'>
+            <label for='player_num'>Number: </label>
+            <input type='number' name='player_num' id='player_num'>
+        </li>
+        <li class='list-group-item'>
+            <label for='team'>Team: </label>
+            <select name='team' id='team'>
+                {% for team in teams %}
+                <option value='{{ team }}'>{{ team }}</option>
+                {% endfor %}
+            </select>
+        </li>
+    </ul>
+	<input type='submit' value='login' class='btn btn-primary'>
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'lineup_app/score-box.js' %}"></script>
+{% endblock %}

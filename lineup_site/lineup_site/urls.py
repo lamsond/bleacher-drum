@@ -25,6 +25,7 @@ urlpatterns = [
     path('play_ball/', views.play_ball),
     path('new_game/', views.new_game),
     path('new_team/', views.new_team),
+    path('new_player/', views.new_player),
     path('<int:game_id>/set_lineup/', views.set_lineup),
     path('<int:game_id>/set_pitchers/', views.set_pitchers),
     path('<int:game_id>/save_lineup/', views.save_lineup),
