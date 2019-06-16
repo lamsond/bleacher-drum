@@ -1,0 +1,35 @@
+{% extends 'lineup_app/header.html' %}
+{% load static %}
+{% block title %}register{% endblock %}
+
+{% block css %}
+.top-row{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#scoreboard-div{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.btn-success{
+	margin-top: 5px;
+}
+{% endblock %}
+
+{% block content %}
+<h3>create an account</h3>
+<form class='lineup-card form-group' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+	<input type='submit' value='register' class='btn btn-primary'>
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'lineup_app/score-box.js' %}"></script>
+{% endblock %}

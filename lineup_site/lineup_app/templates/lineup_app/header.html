@@ -12,6 +12,9 @@
 .footer{
 	text-align: center;
 }
+.greeting{
+	color: #f0f0f0;
+}
 </style>
 	</head>
 	<body>
@@ -28,9 +31,10 @@
 					<li class='nav-item'><a class='nav-link' href='#'>Stats</a></li>	
 					<li class='nav-item'><a class='nav-link' href='#'>About</a></li>
 					{% if user.is_authenticated %}
-					<li class='nav-item'>Hello, {{ user.username }}</li>
+					<li class='nav-item greeting'>Hello, {{ user.username }}</li>
 					<li class='nav-item'><a class='nav-link' href='/accounts/logout/'>logout</a></li>
 					{% else %}
+					<li class='nav-item'><a class='nav-link' href='/register/'>create account</a></li>
 					<li class='nav-item'><a class='nav-link' href='/accounts/login/'>login</a></li>
 					{% endif %}
 				</ul>

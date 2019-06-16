@@ -20,6 +20,7 @@ from lineup_app import views
 
 urlpatterns = [
     path('', views.index),
+    path('register/', views.register),
     path('accounts/', include('django.contrib.auth.urls')),
     path('play_ball/', views.play_ball),
     path('new_game/', views.new_game),

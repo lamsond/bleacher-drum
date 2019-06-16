@@ -2,12 +2,29 @@ import json
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 from .models import Game, LineupSlot, Player, Team
 from .forms import TeamForm, GameForm
 
 def index(request):
     return render(request, 'lineup_app/index.html')
+
+def register(request):
+    if request.method != 'POST':
+        form = UserCreationForm()
+    else:
+        form = UserCreationForm(data=request.POST)
+
+        if form.is_valid:
+            new_user = form.save()
+            authenticated_user = authenticate(username=new_user.username, password=request.POST['password1'])
+            login(request, authenticated_user)
+            return HttpResponseRedirect('/')
+    
+    context = {'form': form}
+    return render(request, 'registration/register.html', context)
 
 def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
