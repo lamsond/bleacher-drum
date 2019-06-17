@@ -23,7 +23,7 @@
 {% if ctx == "away" %}
 <h3>Set {{ game.team_away }} Lineup</h3>
 {% else %}
-<h3>Set {{ game.team_away }} Lineup</h3>
+<h3>Set {{ game.team_home }} Lineup</h3>
 {% endif %}
 <form class='lineup-card form-group' method='post' action='../../save_lineup/{{ ctx }}/'>
 	{% csrf_token %}
