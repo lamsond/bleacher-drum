@@ -31,10 +31,27 @@ def play_ball(request):
     return render(request, 'lineup_app/play_ball.html')
 
 @login_required
-def set_lineup(request, game_id):
+def set_lineup(request, game_id, ctx):
     game = get_object_or_404(Game, pk=game_id)
-    nyy = Team.objects.get(abbr='NYY')
-    players = Player.objects.filter(team=nyy)
+    if ctx == 'away':
+        players = Player.objects.filter(team=game.team_away)
+    else:
+        players = Player.objects.filter(team=game.team_home)
+    positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'PH')
+    slot_indices = range(1, 10)
+    context = {'game': game,
+            'players': players,
+            'positions': positions,
+            'slots': slot_indices,
+            'ctx': ctx,
+            }
+
+    return render(request, 'lineup_app/set_lineup.html', context)
+
+@login_required
+def set_away_lineup(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    players = Player.objects.filter(team=game.team_away)
     positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'PH')
     slot_indices = range(1, 10)
     context = {'game': game,
@@ -60,7 +77,7 @@ def set_pitchers(request, game_id):
     return render(request, 'lineup_app/set_pitchers.html', context)
 
 @login_required
-def save_lineup(request, game_id):
+def save_lineup(request, game_id, ctx):
     pitchers = True
     data = request.POST['hidden']
     if data == '':
@@ -89,6 +106,8 @@ def save_lineup(request, game_id):
         url = '/' + str(game_id) + '/set_pitchers/'
         if pitchers:
             url = '/new_game/'
+        elif ctx == 'away':
+            url = '../../set_lineup/home/'
     return HttpResponseRedirect(url)
 
 @login_required
@@ -103,6 +122,7 @@ def new_team(request):
     else:
         form = TeamForm()
     return render(request, 'lineup_app/new_team.html', {'form': form})
+
 @login_required
 def new_player(request):
     if request.method == 'POST':
@@ -118,7 +138,6 @@ def new_player(request):
     context = {'teams': teams}
     return render(request, 'lineup_app/new_player.html', context)
 
-
 @login_required
 def new_game(request):
     if request.method == 'POST':
@@ -128,13 +147,12 @@ def new_game(request):
             this_game.owner = request.user
             this_game.save()
             game_id = this_game.id
-            return HttpResponseRedirect('/' + str(game_id) + '/set_lineup/')
+            return HttpResponseRedirect('/' + str(game_id) + '/set_lineup/away/')
     else:
         form = GameForm()
         form.fields['team_home'].queryset = Team.objects.filter(owner=request.user)
         form.fields['team_away'].queryset = Team.objects.filter(owner=request.user)
     return render(request, 'lineup_app/new_game.html', {'form': form})
-
 
 @login_required
 def view_games(request):
