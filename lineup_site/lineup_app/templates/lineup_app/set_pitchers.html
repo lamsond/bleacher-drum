@@ -22,8 +22,12 @@
 {% endblock %}
 
 {% block content %}
-<h3>Set NYY Pitchers</h3>
-<form class='lineup-card form-group' method='post' action='../save_lineup/'>
+{% if ctx == 'away' %}
+<h3>Set {{ game.team_away }} Pitchers</h3>
+{% else %}
+<h3>Set {{ game.team_home }} Pitchers</h3>
+{% endif %}
+<form class='lineup-card form-group' method='post' action='../save_lineup/{{ ctx }}/'>
 	{% csrf_token %}
 	<ol class='dev'>
 		{% for slot in slots %}

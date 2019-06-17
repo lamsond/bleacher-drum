@@ -63,15 +63,18 @@ def set_away_lineup(request, game_id):
     return render(request, 'lineup_app/set_lineup.html', context)
 
 @login_required
-def set_pitchers(request, game_id):
+def set_pitchers(request, game_id, ctx):
     game = Game.objects.get(pk=game_id)
-    nyy = Team.objects.get(abbr='NYY')
-    players = Player.objects.filter(team=nyy)
+    if ctx == 'away':
+        players = Player.objects.filter(team=game.team_away)
+    else:
+        players = Player.objects.filter(team=game.team_home)
     slot_indices = range(1, 13)
 
     context = {'game': game,
             'players': players,
             'slots': slot_indices,
+            'ctx': ctx,
             }
 
     return render(request, 'lineup_app/set_pitchers.html', context)
@@ -103,11 +106,18 @@ def save_lineup(request, game_id, ctx):
         lineup_entry = LineupSlot(game=game, player=player, num=10, pos=pos,
                 starter=int(slot)-1)
         lineup_entry.save()
-        url = '/' + str(game_id) + '/set_pitchers/'
+        url = ''
         if pitchers:
-            url = '/new_game/'
-        elif ctx == 'away':
-            url = '../../set_lineup/home/'
+            if ctx == 'home':
+                url = '/new_game/'
+            elif ctx == 'away':
+                url = '/' + str(game_id) + '/set_pitchers/home'
+        else:
+            if ctx == 'away':
+                url = '../../set_lineup/home/'
+            elif ctx == 'home':
+                url = '/' + str(game_id) + '/set_pitchers/away'
+
     return HttpResponseRedirect(url)
 
 @login_required
