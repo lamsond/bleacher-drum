@@ -27,9 +27,6 @@ def register(request):
     context = {'form': form}
     return render(request, 'registration/register.html', context)
 
-def play_ball(request):
-    return render(request, 'lineup_app/play_ball.html')
-
 @login_required
 def set_lineup(request, game_id, ctx):
     game = get_object_or_404(Game, pk=game_id)
@@ -44,20 +41,6 @@ def set_lineup(request, game_id, ctx):
             'positions': positions,
             'slots': slot_indices,
             'ctx': ctx,
-            }
-
-    return render(request, 'lineup_app/set_lineup.html', context)
-
-@login_required
-def set_away_lineup(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
-    players = Player.objects.filter(team=game.team_away)
-    positions = ('P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'PH')
-    slot_indices = range(1, 10)
-    context = {'game': game,
-            'players': players,
-            'positions': positions,
-            'slots': slot_indices,
             }
 
     return render(request, 'lineup_app/set_lineup.html', context)
@@ -181,4 +164,3 @@ def view_players(request):
     players = Player.objects.filter(owner=request.user).order_by('team').all()
     context = {'players': players}
     return render(request, 'lineup_app/view_players.html', context)
-
