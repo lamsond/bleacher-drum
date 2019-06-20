@@ -1,0 +1,18 @@
+{% extends 'lineup_app/header.html' %}
+{% load static %}
+  
+{% block title %}{{ team }}{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<ul class='list-group'>
+    {% for player in players %}
+    <li class='list-group-item'><a href='/{{ player.id }}/view_player/'>{{ player }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

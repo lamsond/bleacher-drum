@@ -160,7 +160,23 @@ def view_teams(request):
     return render(request, 'lineup_app/view_teams.html', context)
 
 @login_required
+def view_team(request, team_id):
+    team = Team.objects.get(pk=team_id)
+    players = Player.objects.filter(team=team)
+    context = {'team': team, 'players': players}
+    return render(request, 'lineup_app/view_team.html', context)
+
+@login_required
 def view_players(request):
     players = Player.objects.filter(owner=request.user).order_by('team').all()
     context = {'players': players}
     return render(request, 'lineup_app/view_players.html', context)
+
+@login_required
+def view_player(request, player_id):
+    context = {'player': Player.objects.get(pk=player_id)}
+    return render(request, 'lineup_app/view_player.html', context)
+
+@login_required
+def view_lineup(request, game_id):
+    return -1
