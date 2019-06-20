@@ -125,7 +125,7 @@ def new_player(request):
         owner = request.user
         new_player = Player(name=name, num=num, team=team, owner=owner)
         new_player.save()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/new_player/')
 
     teams = Team.objects.filter(owner=request.user).all()
     context = {'teams': teams}
