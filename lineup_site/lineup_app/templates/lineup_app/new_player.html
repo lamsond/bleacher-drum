@@ -2,24 +2,7 @@
 {% load static %}
 {% block title %}new player{% endblock %}
 
-{% block css %}
-.top-row{
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-
-#scoreboard-div{
-	display: flex;
-	text-align: center;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-.btn-success{
-	margin-top: 5px;
-}
-{% endblock %}
+{% block css %}{% endblock %}
 
 {% block content %}
 <h3>new player</h3>
@@ -47,6 +30,4 @@
 </form>
 {% endblock %}
 
-{% block js %}
-<script src="{% static 'lineup_app/score-box.js' %}"></script>
-{% endblock %}
+{% block js %}{% endblock %}

@@ -12,8 +12,22 @@
 .footer{
 	text-align: center;
 }
+
 .greeting{
 	color: #f0f0f0;
+}
+
+.top-row{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#scoreboard-div{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-around;
 }
 </style>
 	</head>
@@ -84,9 +98,12 @@
 		<div class='footer'>
 			<a href='http://127.0.0.1:8000/admin/'>admin page</a>
 		</div>
+		<!-- bootstrap js -->
 		<script src="{% static 'lineup_app/jquery.js' %}"></script>
 		<script src="{% static 'lineup_app/bootstrap.js' %}"></script>
 		<script src="{% static 'lineup_app/bootstrap.bundle.js' %}"></script>
+		<!-- lineup js -->
+		<script src="{% static 'lineup_app/score-box.js' %}"></script>
 		{% block js %}{% endblock %}
 	</body>
 </html>

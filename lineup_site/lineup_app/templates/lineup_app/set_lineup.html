@@ -1,24 +1,16 @@
 {% extends 'lineup_app/header.html' %}
 {% load static %}
-{% block title %}set lineup{% endblock %}
-{% block css %}
-.top-row{
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
 
-#scoreboard-div{
-	display: flex;
-	text-align: center;
-	flex-direction: column;
-	justify-content: space-around;
-}
+{% block title %}set lineup{% endblock %}
+
+{% block css %}
 
 .btn-success{
 	margin-top: 5px;
 }
+
 {% endblock %}
+
 {% block content %}
 {% if ctx == "away" %}
 <h3>Set {{ game.team_away }} Lineup</h3>
@@ -51,7 +43,7 @@
 	<input type='hidden' id='lineup-json' name='hidden' value=''></input>
 </form>
 {% endblock %}
+
 {% block js %}
-<script src="{% static 'lineup_app/score-box.js' %}"></script>
 <script src="{% static 'lineup_app/lineup-setter.js' %}"></script>
 {% endblock %}
