@@ -8,7 +8,18 @@
 {% endblock %}
 
 {% block content %}
-
+<h3>{{ game.team_away }} Lineup</h3>
+<ol>
+    {% for slot in awayslots %}
+    <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
+    {% endfor %}
+</ol>
+<h3>{{ game.team_home }} Lineup</h3>
+<ol>
+    {% for slot in homeslots %}
+    <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
+    {% endfor %}
+</ol>
 {% endblock %}
 
 {% block js %}

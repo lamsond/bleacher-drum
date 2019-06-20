@@ -86,8 +86,10 @@ def save_lineup(request, game_id, ctx):
             pitchers = False
         slot = lineup_slot["slot"]
 
-        lineup_entry = LineupSlot(game=game, player=player, num=10, pos=pos,
-                starter=int(slot)-1)
+        if pitchers:
+            lineup_entry = LineupSlot(game=game, player=player, num=10, pos=pos, starter=int(slot)-1)
+        else:
+            lineup_entry = LineupSlot(game=game, player=player, num=slot, pos=pos, starter=0)
         lineup_entry.save()
         url = ''
         if pitchers:
@@ -179,4 +181,10 @@ def view_player(request, player_id):
 
 @login_required
 def view_lineup(request, game_id):
-    return -1
+    game = Game.objects.get(pk=game_id)
+    at = game.team_away
+    ht = game.team_home
+    awayslots = LineupSlot.objects.filter(game=game).filter(player__team=at).filter(starter=0).order_by('num')
+    homeslots = LineupSlot.objects.filter(game=game).filter(player__team=ht).filter(starter=0).order_by('num')
+    context = {'awayslots': awayslots, 'homeslots': homeslots, 'game': game}
+    return render(request, 'lineup_app/view_lineup.html', context)
