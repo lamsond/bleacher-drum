@@ -8,18 +8,30 @@
 {% endblock %}
 
 {% block content %}
-<h3>{{ game.team_away }} Lineup</h3>
-<ol>
-    {% for slot in awayslots %}
-    <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
-    {% endfor %}
-</ol>
-<h3>{{ game.team_home }} Lineup</h3>
-<ol>
-    {% for slot in homeslots %}
-    <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
-    {% endfor %}
-</ol>
+<div class='row'>
+    <div class='col-sm-4'>
+        <h3>{{ game.team_away }} Lineup</h3>
+        <ol>
+            {% for slot in awayslots %}
+            <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
+            {% if slot.num == 9 %}
+            <hr>
+            {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+    <div class='col-sm-4'>
+        <h3>{{ game.team_home }} Lineup</h3>
+        <ol>
+            {% for slot in homeslots %}
+            <li>({{ slot.player.num }}) {{ slot.player }} - {{ slot.pos}} </li>
+            {% if slot.num == 9 %}
+            <hr>
+            {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}
