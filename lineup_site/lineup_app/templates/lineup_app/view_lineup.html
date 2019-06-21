@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class='row'>
-    <div class='col-sm-4'>
+    <div class='col'>
         <h3>{{ game.team_away }} Lineup</h3>
         <ol>
             {% for slot in awayslots %}
@@ -20,7 +20,7 @@
             {% endfor %}
         </ol>
     </div>
-    <div class='col-sm-4'>
+    <div class='col'>
         <h3>{{ game.team_home }} Lineup</h3>
         <ol>
             {% for slot in homeslots %}
