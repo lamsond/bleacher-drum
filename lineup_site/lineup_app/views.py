@@ -88,20 +88,28 @@ def save_lineup(request, game_id, ctx):
 
         if pitchers:
             lineup_entry = LineupSlot(game=game, player=player, num=10, pos=pos, starter=int(slot)-1)
+            query = LineupSlot.objects.filter(game=game).filter(num=10).filter(starter=int(slot)-1).filter(player__team=player.team)
+            if len(query) == 1:
+                print("deleting: " + str(query))
+                query[0].delete()
         else:
             lineup_entry = LineupSlot(game=game, player=player, num=slot, pos=pos, starter=0)
+            query = LineupSlot.objects.filter(game=game).filter(num=slot).filter(starter=0).filter(player__team=player.team)
+            if len(query) == 1:
+                print("deleting: " + str(query))
+                query[0].delete()
         lineup_entry.save()
         url = ''
         if pitchers:
             if ctx == 'home':
                 url = '/new_game/'
             elif ctx == 'away':
-                url = '/' + str(game_id) + '/set_pitchers/home'
+                url = '/' + str(game_id) + '/set_pitchers/home/'
         else:
             if ctx == 'away':
                 url = '../../set_lineup/home/'
             elif ctx == 'home':
-                url = '/' + str(game_id) + '/set_pitchers/away'
+                url = '/' + str(game_id) + '/set_pitchers/away/'
 
     return HttpResponseRedirect(url)
 
