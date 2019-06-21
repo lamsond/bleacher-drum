@@ -102,7 +102,7 @@ def save_lineup(request, game_id, ctx):
         url = ''
         if pitchers:
             if ctx == 'home':
-                url = '/new_game/'
+                url = '/' + str(game_id) + '/view_lineup/'
             elif ctx == 'away':
                 url = '/' + str(game_id) + '/set_pitchers/home/'
         else:

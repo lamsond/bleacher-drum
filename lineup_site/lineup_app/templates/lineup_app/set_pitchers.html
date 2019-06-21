@@ -17,7 +17,7 @@
 {% else %}
 <h3>Set {{ game.team_home }} Pitchers</h3>
 {% endif %}
-<form class='lineup-card form-group' method='post' action='../save_lineup/{{ ctx }}/'>
+<form class='lineup-card form-group' method='post' action='../../save_lineup/{{ ctx }}/'>
 	{% csrf_token %}
 	<ol class='dev'>
 		{% for slot in slots %}
