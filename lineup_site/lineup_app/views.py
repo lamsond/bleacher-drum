@@ -190,9 +190,20 @@ def view_player(request, player_id):
 @login_required
 def view_lineup(request, game_id):
     game = Game.objects.get(pk=game_id)
+    gids = [game.id for game in Game.objects.all()]
+    i = gids.index(game_id)
+    if i == 0:
+        previous = gids[-1]
+    else:
+        previous = gids[i-1]
+    if i == len(gids)-1:
+        next = gids[0]
+    else:
+        next = gids[i+1]
+
     at = game.team_away
     ht = game.team_home
     awayslots = LineupSlot.objects.filter(game=game).filter(player__team=at).filter(starter=0).order_by('num')
     homeslots = LineupSlot.objects.filter(game=game).filter(player__team=ht).filter(starter=0).order_by('num')
-    context = {'awayslots': awayslots, 'homeslots': homeslots, 'game': game}
+    context = {'awayslots': awayslots, 'homeslots': homeslots, 'game': game, 'previous': previous, 'next': next}
     return render(request, 'lineup_app/view_lineup.html', context)

@@ -4,11 +4,16 @@
 {% block title %}view lineup{% endblock %}
 
 {% block css %}
-
+.d{
+    font-size: 48px;
+}
 {% endblock %}
 
 {% block content %}
 <div class='row'>
+    <div class='col-1 d'>
+        <a href='/{{ previous }}/view_lineup/'>&lt;</a>
+    </div>
     <div class='col'>
         <h3>{{ game.team_away }} Lineup</h3>
         <ol>
@@ -30,6 +35,9 @@
             {% endif %}
             {% endfor %}
         </ol>
+    </div>
+    <div class='col-1 d'>
+        <a href='/{{ next }}/view_lineup/'>&gt;</a>
     </div>
 </div>
 <a class='btn btn-primary' href='/{{ game.id }}/set_lineup/away/'>edit lineups</a>
